@@ -27,13 +27,14 @@ class PlacesController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
 
   def show
     @place = Place.find(params[:id])
   end
 
   def destroy
-    @place = place.find(params[:id])
+    @place = Place.find(params[:id])
     @place.destroy
     redirect_to root_path, status: :see_other
 
