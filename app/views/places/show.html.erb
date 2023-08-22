@@ -1,0 +1,16 @@
+<div class="container mt-5">
+  <p><strong>Places detail</strong></p>
+    <div class="row">
+        <div class="col">
+          <div class="card p-3 mt-3">
+            <img src ="<%= @place.picture_url %>">
+            <div>
+              <h2><%= @place.name %> </h2>
+              <p><%= @place.address%> </p>
+              <p><%= @place.price %> </p>
+              <p><%= link_to "Delete this place", root_path,  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></p>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>

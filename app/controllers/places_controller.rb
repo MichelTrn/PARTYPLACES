@@ -15,6 +15,7 @@ class PlacesController < ApplicationController
     end
   end
 
+
   def edit
     @place = Place.find(params[:id])
   end
@@ -26,11 +27,21 @@ class PlacesController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+
+  def show
+    @place = Place.find(params[:id])
+  end
+
+  def destroy
+    @place = place.find(params[:id])
+    @place.destroy
+    redirect_to root_path, status: :see_other
+
   end
 
   private
 
   def place_params
-    params.require(:place).permit(:name, :address, :price, :picture_url, :user_id)
+    params.require(:place).permit(:name, :address, :price, photos: [])
   end
 end

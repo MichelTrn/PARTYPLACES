@@ -1,10 +1,11 @@
-<div class="container mt-5">
-  <h1 class="text-center border">New list</h1>
+<%= render 'shared/navbar' %>
+<div class="container mt-5 border">
+  <h1 class="text-center mt-5 ">Add your place</h1>
   <%= simple_form_for (@place) do |f| %>
     <%= f.input :name %>
     <%= f.input :address %>
     <%= f.input :price %>
-    <%= f.input :picture_url %>
-    <%= f.button :submit, class: "btn btn-success"  %>
+    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+    <%= f.button :submit, class: "btn btn-outline-primary"  %>
   <% end %>
 </div>
