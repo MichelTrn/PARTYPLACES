@@ -7,6 +7,11 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require 'faker'
 
+puts 'Cleaning database...'
+Booking.destroy_all
+Place.destroy_all
+User.destroy_all
+
 user1 = User.create!(
   first_name: "Nathaly",
   last_name: "Gomez",
