@@ -17,11 +17,12 @@ class PlacesController < ApplicationController
 
   def show
     @place = Place.find(params[:id])
+    # @bookings = @place.bookings
   end
 
   private
 
   def place_params
-    params.require(:place).permit(:name, :address, :price, photos: [])
+    params.require(:place).permit(:name, :address, :price, :user_id, :place_id, photos: [])
   end
 end
