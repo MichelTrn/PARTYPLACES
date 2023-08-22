@@ -1,14 +1,15 @@
 class PlacesController < ApplicationController
   def new
-    @user = User.find(params[:user_id])
+    @user = User.find(current_user.id)
     @place = Place.new
   end
 
   def create
-    @user = User.find(params[:user_id])
     @place = Place.new(place_params)
+    @user = User.find(current_user.id)
+    @place.user = @user
     if @place.save
-      redirect_to place_path(@place)
+      redirect_to root_path
     else
       render :new, status: :unprocessable_entity
     end
