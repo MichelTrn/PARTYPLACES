@@ -1,4 +1,17 @@
 <%= render 'shared/navbar' %>
 <%= render 'shared/banner' %>
 
-<%= @places %>
+<div class="container">
+  <h2 class="mt-3">My Places</h1>
+  <div class="row">
+    <%@places.each do |place|%>
+    <div class="col-md-4">
+      <div class="card p-3 mt-3">
+        <h3><%= place.name %></h3>
+        <%= image_tag place.picture_url, class: "object-fit: cover" %>
+        <%# <p><%= link_to place.name, list_path(list)</p> %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
