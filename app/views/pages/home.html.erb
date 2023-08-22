@@ -1,26 +1,20 @@
 <%= render 'shared/banner' %>
 
-
-
 <% if user_signed_in? %>
-  <p>Hello <%= current_user.first_name %></p>
-  <%= @places %>
-<% else %>
-  <p>You are not logged in</p>
-<% end %>
-
-<div class="container">
-  <h2 class="mt-3">My Places</h1>
-  <div class="row">
-    <%@places.each do |place|%>
-    <div class="col-md-4">
-      <div class="card p-3 mt-3">
-        <h3><%= place.name %></h3>
-        <%= image_tag place.picture_url, class: "object-fit: cover" %>
-        <%# <p><%= link_to place.name, list_path(list)</p> %>
+    <p>Hello <%= current_user.first_name %></p>
+    <div class="container">
+      <h2 class="mt-3">Places of <%= current_user.first_name %></h1>
+      <div class="row">
+        <%@places_user.each do |place|%>
+          <div class="col-md-4">
+            <div class="card p-3 mt-3">
+              <h3><%= place.name %></h3>
+              <%= image_tag place.picture_url, class: "object-fit: cover" %>
+            </div>
+          </div>
+        <% end %>
       </div>
-    </div>
-    <% end %>
-  </div>
-</div>
-
+    </div>  
+  <% else %>
+    <p>You are not logged in</p>
+  <% end %>
