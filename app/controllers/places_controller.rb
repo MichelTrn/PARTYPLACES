@@ -19,6 +19,12 @@ class PlacesController < ApplicationController
     @place = Place.find(params[:id])
   end
 
+  def destroy
+    @place = place.find(params[:id])
+    @place.destroy
+    redirect_to root_path, status: :see_other
+  end
+
   private
 
   def place_params
