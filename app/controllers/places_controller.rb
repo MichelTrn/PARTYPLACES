@@ -31,7 +31,7 @@ class PlacesController < ApplicationController
 
   def show
     @place = Place.find(params[:id])
-    # @bookings = @place.bookings
+    @bookings = Booking.all.select {|booking| booking.place == @place }
   end
 
   def destroy
