@@ -1,10 +1,10 @@
 <div class="container mt-5">
   <h1 class="text-center border">New list</h1>
-  <%= simple_form_for ([@user, @place]) do |f| %>
+  <%= simple_form_for (@place) do |f| %>
     <%= f.input :name %>
     <%= f.input :address %>
     <%= f.input :price %>
-    <%= f.input :price_url %>
+    <%= f.input :picture_url %>
     <%= f.button :submit, class: "btn btn-success"  %>
   <% end %>
 </div>
