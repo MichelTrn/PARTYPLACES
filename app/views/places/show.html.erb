@@ -21,10 +21,27 @@
     </div>
 </div>
 
-<div class="container">
-  <% @bookings.each do |booking| %>
-    <%= booking.status %>
-    <%= booking.begin_date %>
-    <%= booking.end_date %>
-  <% end %>
-</div>
+<div class="container mt-5">
+  <p><strong>Bookings detail</strong></p>
+      <div class="row">
+        <div class="col">
+          <div class="card p-3 mt-3">
+
+            <div class="card-product">
+              <div class="card-product-infos">
+    <% if user_signed_in? %>
+        <% @bookings.each do |booking| %>
+            <% if booking.status == 'pending confirmation' %>
+              <button class="btn btn-outline-primary text-secondary"><%= link_to "Book this place", place_path %></button>
+            <% end %>
+            <p><%= booking.status %></p>
+            <p><%= booking.begin_date %></p>
+            <p><%= booking.end_date %></p>
+        <% end %>
+    <% end %>
+        <div>
+            </div>
+          </div>
+        </div>
+    </div>
+    </div>

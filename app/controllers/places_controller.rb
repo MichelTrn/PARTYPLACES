@@ -41,6 +41,14 @@ class PlacesController < ApplicationController
 
   end
 
+  def accept
+    @place = Place.find(params[:id])
+    @booking = Booking.select {|booking| booking.place == @place }
+    if @booking.status == 'pending confirmation'
+      @booking.status = 'booked'
+    end
+  end
+
   private
 
   def place_params
