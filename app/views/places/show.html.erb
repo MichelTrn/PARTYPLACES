@@ -18,8 +18,8 @@
             <p><%= @place.address%> </p>
             <p><%= @place.price %> € </p>
             <% if user_signed_in? %>
-              <button class="btn btn-outline-primary text-secondary"><%= link_to "Delete this place", place_path,  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></button>
-              <p><%= link_to "Edit this place", edit_place_path %></p>
+              <button class="btn btn-outline-primary"><%= link_to "Delete this place", place_path,  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></button>
+              <button class="btn btn-outline-primary"><%= link_to "Edit this place", edit_place_path %></button>
             <% end %>
           </div>
         </div>
