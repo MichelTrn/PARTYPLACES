@@ -7,6 +7,13 @@
 #   Character.create(name: "Luke", movie: movies.first)
 require 'faker'
 
+puts 'Cleaning database...'
+Booking.destroy_all
+Place.destroy_all
+User.destroy_all
+
+puts 'Creating 1 user and user places'
+
 user1 = User.create!(
   first_name: "Nathaly",
   last_name: "Gomez",
@@ -21,6 +28,8 @@ place1 = user1.places.create!(
   price: Faker::Number.within(range: 400..1000),
   picture_url: "https://source.unsplash.com/random"
 )
+
+puts 'Creating 10 fake users and fake places'
 
 10.times do
   user = User.new(
@@ -38,6 +47,8 @@ place1 = user1.places.create!(
     picture_url: "https://source.unsplash.com/random"
   )
 end
+
+puts 'Creating 3 bookings '
 
 3.times do
   booking = Booking.new(
