@@ -6,7 +6,13 @@
     <div class="col">
       <div class="card p-3 mt-3">
         <div class="card-product">
-          <img src="<%= @place.picture_url %>"/>
+          <%if @place.photo.attached? %>
+            <%= cl_image_tag @place.photo.key, height: 300, width: 300, crop: :fill %>
+          <%elsif @place.picture_url%>
+            <%= image_tag @place.picture_url, class: "object-fit: cover" %>
+          <%else%>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png"/>
+          <%end%>
           <div class="card-product-infos">
             <h2><%= @place.name %> </h2>
             <p><%= @place.address%> </p>
@@ -45,4 +51,3 @@
         </div>
     </div>
     </div>
-
