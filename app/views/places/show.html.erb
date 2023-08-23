@@ -28,7 +28,7 @@
   </div>
 </div>
 
-<% if user_signed_in? %>
+<% if user_signed_in? && @bookings.count = 0%>
   <div class="container mt-5 border">
     <p><strong>Bookings detail</strong></p>
       <div class="row">
@@ -69,8 +69,6 @@
                     <% end %>
                     </div>
                 <% end %>
-                  <div>
-            </div>
           </div>
         </div>
       </div>
