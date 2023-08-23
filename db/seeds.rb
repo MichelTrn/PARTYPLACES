@@ -22,12 +22,23 @@ user1 = User.create!(
   password: "123456"
 )
 
-place1 = user1.places.create!(
-  name: Faker::Restaurant.name,
-  address: Faker::Address.full_address,
-  price: Faker::Number.within(range: 400..1000),
-  picture_url: "https://source.unsplash.com/random"
-)
+# place1 = user1.places.create!(
+#   name: Faker::Restaurant.name,
+#   address: Faker::Address.full_address,
+#   price: Faker::Number.within(range: 400..1000),
+#   picture_url: "https://source.unsplash.com/random"
+# )
+
+url = "https://api.unsplash.com/photos/random?client_id=#{ENV["ACCESS_KEY"]}&query=bar"
+photo_serialized = URI.open(url).read
+photo_json = JSON.parse(photo_serialized)
+photo_url = photo_json["urls"]["small"]
+file = URI.open(photo_url)
+place1 = user1.places.new(name: Faker::Restaurant.name, address: Faker::Address.full_address, price: rand(400..1000))
+# Attach the photo using your Cloudinary config
+place1.photo.attach(io: file, filename: "bar.png", content_type: "image/png")
+place1.save!
+
 
 puts 'Creating 1 seed via unplash'
 
@@ -92,12 +103,23 @@ puts 'Creating 3 bookings '
 
 3.times do
   booking = Booking.new(
-    status: ["booked", "available", "refused", "pending confirmation"].sample,
+    status: ["booked", "refused", "pending confirmation"].sample,
     begin_date: Faker::Date.between(from: '2022-09-23', to: '2023-01-13'),
     end_date: Faker::Date.between(from: '2023-01-14', to: Date.today)
   )
   booking.user = User.where.not(id: user1).sample
   booking.place = place1
+  booking.save!
+end
+
+2.times do
+  booking = Booking.new(
+    status: ["booked", "refused", "pending confirmation"].sample,
+    begin_date: Faker::Date.between(from: '2022-09-23', to: '2023-01-13'),
+    end_date: Faker::Date.between(from: '2023-01-14', to: Date.today)
+  )
+  booking.user = User.where.not(id: user1).sample
+  booking.place = place2
   booking.save!
 end
 
