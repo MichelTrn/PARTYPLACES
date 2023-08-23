@@ -15,7 +15,6 @@ class PlacesController < ApplicationController
     end
   end
 
-
   def edit
     @place = Place.find(params[:id])
   end
@@ -32,6 +31,7 @@ class PlacesController < ApplicationController
   def show
     @place = Place.find(params[:id])
     @bookings = Booking.all.select {|booking| booking.place == @place }
+    @bookings.sort_by! {|booking| booking.begin_date}
   end
 
   def destroy
@@ -39,14 +39,6 @@ class PlacesController < ApplicationController
     @place.destroy
     redirect_to root_path, status: :see_other
 
-  end
-
-  def accept
-    @place = Place.find(params[:id])
-    @booking = Booking.select {|booking| booking.place == @place }
-    if @booking.status == 'pending confirmation'
-      @booking.status = 'booked'
-    end
   end
 
   private
