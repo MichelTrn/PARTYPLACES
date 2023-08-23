@@ -7,15 +7,15 @@
       <div class="row">
         <%@places_user.each do |place|%>
           <div class="col-md-4">
-            <div class="card p-3 mt-3">
-              <h3><%= link_to place.name, place_path(place) %></h3>
-              <%if place.photo.attached? %>
-                <%= cl_image_tag place.photo.key, height: 300, width: 300, crop: :fill%>
-              <%elsif place.picture_url%>
-                <%= image_tag place.picture_url, class: "object-fit: cover" %>
-              <%else%>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png"/>
-              <%end%>
+            <div class="card-index p-3 mt-3">
+              <h3 class="mb-2"><%= link_to place.name, place_path(place) %></h3>
+                <%if place.photo.attached? %>
+                  <%= cl_image_tag place.photo.key, crop: :fit%>
+                <%elsif place.picture_url%>
+                  <%= image_tag place.picture_url, class: "object-fit: cover" %>
+                <%else%>
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png"/>
+                <%end%>
             </div>
           </div>
         <% end %>
@@ -28,15 +28,15 @@
       <div class="row">
         <%@places.each do |place|%>
           <div class="col-md-4">
-            <div class="card p-3 mt-3">
-              <h3><%= link_to place.name, place_path(place) %></h3>
-              <%if place.photo.attached? %>
-                <%= cl_image_tag place.photo.key, height: 300, width: 300, crop: :fill%>
-              <%elsif place.picture_url%>
-                <%= image_tag place.picture_url, class: "object-fit: cover" %>
-              <%else%>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png"/>
-              <%end%>
+            <div class="card-index p-3 mt-3">
+              <h3 class="mb-2"><%= link_to place.name, place_path(place) %></h3>
+                <%if place.photo.attached? %>
+                  <%= cl_image_tag place.photo.key, crop: :fit%>
+                <%elsif place.picture_url%>
+                  <%= image_tag place.picture_url, class: "object-fit: cover" %>
+                <%else%>
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png"/>
+                <%end%>
             </div>
           </div>
         <% end %>

@@ -12,7 +12,7 @@
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
           <li class="nav-item active">
-            <%= link_to "Add your place", new_place_path, class: "nav-link" %>
+            <%= link_to "Add your place", new_place_path, class: "nav-link btn btn-light" %>
           </li>
           <li class="nav-item dropdown">
             <%= image_tag "https://cdn-icons-png.flaticon.com/512/6596/6596121.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
@@ -21,9 +21,9 @@
             </div>
           </li>
         <% else %>
-          <li class="nav-item">
-            <%= link_to "Sign-up", new_user_registration_path, class: "nav-link" %>
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+          <li class="nav-item d-inline-flex">
+            <%= link_to "Sign-up", new_user_registration_path, class: "nav-link btn btn-light" %>
+            <%= link_to "Login", new_user_session_path, class: "nav-link btn btn-light" %>
           </li>
         <% end %>
       </ul>
