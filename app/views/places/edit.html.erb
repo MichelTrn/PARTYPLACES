@@ -5,7 +5,7 @@
     <%= f.input :name %>
     <%= f.input :address %>
     <%= f.input :price %>
-    <%= f.input :picture_url %>
+    <%= f.input :photo, as: :file%>
     <%= f.button :submit, class: "btn btn-success"  %>
   <% end %>
 </div>
