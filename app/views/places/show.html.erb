@@ -34,6 +34,7 @@
   </div>
 </div>
 
+
 <% if user_signed_in? && @bookings.count > 0%>
   <div class="container mt-5 border">
     <p><strong>Bookings detail</strong></p>
@@ -80,3 +81,7 @@
       </div>
   </div>
 <% end %>
+
+<%= link_to "Book this place", new_place_booking_path(@place) %>
+
+
