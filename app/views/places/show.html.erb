@@ -18,7 +18,7 @@
             <p><%= @place.address%> </p>
             <p><%= @place.price %> € </p>
             <br>
-            <% if user_signed_in? %>
+            <% if user_signed_in? && current_user.id == @place.user_id%>
               <div class="edit-delete">
                 <button class="btn btn-outline-info rounded-pill"><i class="fa fa-trash"> <%= link_to " Delete this place ", place_path,  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></i></button>
                 <button class="btn btn-outline-info rounded-pill"><i class="fa fa-edit"> <%= link_to " Edit this place ", edit_place_path %></i></button>

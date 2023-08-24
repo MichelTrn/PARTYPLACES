@@ -1,8 +1,9 @@
 <%= render 'shared/searchbar' %>
 <% if user_signed_in? %>
     <div class="container">
-      <%= render 'shared/indexPlaceUser' %>
+      <%# <%= render 'shared/indexPlaceUser' %>
       <%= render 'shared/indexPlaceOtherUser' %>
+      
     </div>
   <% else %>
     <div class="container">
