@@ -1,6 +1,5 @@
 class BookingsController < ApplicationController
   def update
-    @place = Place.find(params[:id])
     @booking = Booking.find(params[:id])
     if @booking.update(booking_params)
       redirect_to place_path(@booking.place_id)
