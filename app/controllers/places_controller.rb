@@ -32,6 +32,15 @@ class PlacesController < ApplicationController
     @place = Place.find(params[:id])
     @bookings = Booking.all.select {|booking| booking.place == @place }
     @bookings.sort_by! {|booking| booking.begin_date}
+    if @place.geocoded?
+      @markers = [
+        {
+          lat: @place.latitude,
+          lng: @place.longitude,
+          marker_html: render_to_string(partial: "shared/marker")
+        }
+      ]
+    end
   end
 
   def destroy
