@@ -1,7 +1,11 @@
 $dark-blue: #1D063A;
 
 a {
+  color: teal;
   text-decoration: none;
+  &:hover {
+    color: black;
+  }
 }
 
 .btn-white {
