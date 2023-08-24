@@ -4,12 +4,29 @@ class PlacesController < ApplicationController
     @place = Place.new
   end
 
+  def index
+    @places_user = Place.where(user_id: current_user)
+    @places_otheruser = Place.where.not(user_id: current_user)
+    @places = Place.all
+
+    if params[:query].present?
+      # Méthode Search Active Record
+      # @places = @places.where(name: params[:query])
+      @places = Place.search_by_name_and_address(params[:query])
+    end
+
+    if user_signed_in? && params[:query].present?
+      @places_user = @places_user.search_by_name_and_address(params[:query])
+      @places_otheruser = @places_otheruser.search_by_name_and_address(params[:query])
+    end
+  end
+
   def create
     @place = Place.new(place_params)
     @user = User.find(current_user.id)
     @place.user = @user
     if @place.save
-      redirect_to root_path
+      redirect_to places_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -32,12 +49,21 @@ class PlacesController < ApplicationController
     @place = Place.find(params[:id])
     @bookings = Booking.all.select {|booking| booking.place == @place }
     @bookings.sort_by! {|booking| booking.begin_date}
+    if @place.geocoded?
+      @markers = [
+        {
+          lat: @place.latitude,
+          lng: @place.longitude,
+          marker_html: render_to_string(partial: "shared/marker")
+        }
+      ]
+    end
   end
 
   def destroy
     @place = Place.find(params[:id])
     @place.destroy
-    redirect_to root_path, status: :see_other
+    redirect_to places_path, status: :see_other
   end
 
   private

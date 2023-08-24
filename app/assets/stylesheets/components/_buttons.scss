@@ -1,3 +1,39 @@
+$dark-blue: #1D063A;
+
 a {
+  color: teal;
   text-decoration: none;
+  &:hover {
+    color: black;
+  }
+}
+
+.btn-white {
+  color: $dark-blue;
+  padding: 16px 36px;
+  border-radius: 4px;
+  font-weight: bold;
+  background: white;
+  transition: background 0.3s ease;
+  border: 1px solid $dark-blue;
+}
+
+.btn-white:hover {
+  background: $dark-blue;
+  color: white;
+}
+
+.btn-small-white {
+  color: $dark-blue;
+  padding: 8px 24px;
+  border-radius: 4px;
+  font-weight: bold;
+  background: white;
+  transition: background 0.3s ease;
+  border: 1px solid $dark-blue;
+}
+
+.btn-small-white:hover {
+  background: $dark-blue;
+  color: white;
 }
