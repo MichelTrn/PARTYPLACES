@@ -103,7 +103,7 @@ puts 'Creating 3 bookings '
 
 3.times do
   booking = Booking.new(
-    status: ["booked", "refused", "pending confirmation"].sample,
+    status: ["pending confirmation"].sample,
     begin_date: Faker::Date.between(from: '2022-09-23', to: '2023-01-13'),
     end_date: Faker::Date.between(from: '2023-01-14', to: Date.today)
   )
@@ -114,13 +114,24 @@ end
 
 2.times do
   booking = Booking.new(
-    status: ["booked", "refused", "pending confirmation"].sample,
+    status: ["booked","pending confirmation"].sample,
     begin_date: Faker::Date.between(from: '2022-09-23', to: '2023-01-13'),
     end_date: Faker::Date.between(from: '2023-01-14', to: Date.today)
   )
   booking.user = User.where.not(id: user1).sample
   booking.place = place2
   booking.save!
+end
+
+10.times do
+booking = Booking.new(
+  status: ["pending confirmation", "booked", "refused"].sample,
+  begin_date: Faker::Date.between(from: '2022-09-23', to: '2023-01-13'),
+  end_date: Faker::Date.between(from: '2023-01-14', to: Date.today)
+)
+booking.user = user1
+booking.place = place1
+booking.save!
 end
 
 puts 'Seed finished'
