@@ -1,0 +1,13 @@
+<div class="row justify-content-center">
+  <div class="col-sm-8 my-5">
+    <%# l'url correspond au préfix de l'affichage de index / home donc root et non places %>
+    <%= form_with url: root_path, method: :get, class: "d-flex" do %>
+      <%= text_field_tag :query,
+            params[:query],
+            class: "form-control",
+            placeholder: "Type a keyword"
+        %>
+      <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
