@@ -82,6 +82,6 @@
   </div>
 <% end %>
 
-<%= link_to "Book this place", new_place_booking_path(@place) %>
-
-
+<% if user_signed_in? && current_user.id != @place.user_id %>
+  <%= link_to "Book this place", new_place_booking_path(@place) %>
+<% end %>
