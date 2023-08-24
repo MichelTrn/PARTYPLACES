@@ -1,6 +1,20 @@
 class BookingsController < ApplicationController
   before_action :set_place, only: %i[new create]
 
+  def index
+    @places_user = Place.where(user_id: current_user)
+    @places_user.each do |place|
+      @my_bookings_owner = Booking.all.select { |booking| booking.place_id == place.id }
+      # @my_bookings_owner.each do |booking|
+      #   booking.update(booking_params)
+      #    raise
+      #   redirect_to bookings_path
+      # end
+    end
+
+    @my_bookings_locataire = Booking.all.select {|booking| booking.user_id == current_user.id }
+  end
+
   def new
     @booking = Booking.new
   end
