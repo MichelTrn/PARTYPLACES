@@ -11,15 +11,20 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
-          <li class="nav-item active">
-            <%= link_to "Add your place", new_place_path, class: "nav-link btn btn-light" %>
-          </li>
-          <li class="nav-item dropdown">
-            <%= image_tag "https://cdn-icons-png.flaticon.com/512/6596/6596121.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
-            </div>
-          </li>
+          <div class= "d-inline-flex align-items-center">
+            <li class="nav-item active">
+              <%= link_to "Add your place", new_place_path, class: "nav-link btn btn-light" %>
+            </li>
+            <li class="nav-item dropdown">
+              <div class = "d-flex align-items-center p-2 m-1 border">
+                <span class = "p-2"><%= current_user.first_name.capitalize %></span>
+                <%= image_tag "avatar.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                  <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
+                </div>
+              </div>
+            </li>
+          </div>
         <% else %>
           <li class="nav-item d-inline-flex">
             <%= link_to "Sign-up", new_user_registration_path, class: "nav-link btn btn-light" %>

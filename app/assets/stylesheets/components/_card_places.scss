@@ -8,9 +8,9 @@
 }
 
 .card-product img {
-  height: 100vh;
+  height: 100%;
   width: 300px;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .card-product h2 {
