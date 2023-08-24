@@ -25,6 +25,7 @@ user1 = User.create!(
 )
 
 puts 'Creating 3 places for Nathaly via unplash'
+3.times do
   # Build the URL for your query to unsplash
   # with your access_key and a query for some keywords:
 url = "https://api.unsplash.com/photos/random?client_id=#{ENV["ACCESS_KEY"]}&query=bar"
@@ -42,7 +43,6 @@ place1 = user1.places.new(name: Faker::Restaurant.name, address: Faker::Address.
 place1.photo.attach(io: file, filename: "bar.png", content_type: "image/png")
 place1.save!
 
-
 puts 'Creating 6 bookings for places Nathaly via unplash'
 6.times do
   booking = Booking.new(
@@ -50,10 +50,12 @@ puts 'Creating 6 bookings for places Nathaly via unplash'
     begin_date: Faker::Date.between(from: '2022-09-23', to: '2023-01-13'),
     end_date: Faker::Date.between(from: '2023-01-14', to: Date.today)
   )
-booking.user = user1
-booking.place = place1
-booking.save!
+  booking.user = user1
+  booking.place = place1
+  booking.save!
 end
+end
+
 
 # Seed pour les fakes users
 puts 'Creating 10 fake users and fake places via unsplash'
@@ -78,7 +80,7 @@ puts 'Creating 10 fake users and fake places via unsplash'
   place2.photo.attach(io: file, filename: "bar.png", content_type: "image/png")
   place2.save!
 
-  puts 'Creating 5 bookings '
+  puts 'Creating 3 bookings'
 
   3.times do
     booking = Booking.new(
