@@ -1,3 +1,7 @@
 a {
+  color: teal;
   text-decoration: none;
+  &:hover {
+    color: black;
+  }
 }
