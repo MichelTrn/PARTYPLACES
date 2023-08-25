@@ -1,11 +1,19 @@
-<h1>New booking for <%= @place.name %></h1>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="container mt-5 border rounded-5 p-5">
+        <h1>New booking for <%= @place.name %></h1>
 
-<%= simple_form_for [@place, @booking] do |f| %>
-  <%= f.input :begin_date,
-    as: :string,
-    input_html: { data: { controller: "datepicker" } }%>
-  <%= f.input :end_date,
-    as: :string,
-    input_html: { data: { controller: "datepicker" } }%>
-  <%= f.submit "Book this place", class: "btn btn-primary" %>
-<% end %>
+        <%= simple_form_for [@place, @booking] do |f| %>
+          <%= f.input :begin_date,
+            as: :string,
+            input_html: { data: { controller: "datepicker" } }%>
+          <%= f.input :end_date,
+            as: :string,
+            input_html: { data: { controller: "datepicker" } }%>
+          <%= f.submit "Book this place", class: "btn-small-white" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
