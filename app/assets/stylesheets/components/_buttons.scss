@@ -37,3 +37,12 @@ a {
   background: $dark-blue;
   color: white;
 }
+
+
+#button-book-in-show-places {
+  color: white;
+  text-decoration: none;
+  &:hover {
+    color: black;
+}
+}
