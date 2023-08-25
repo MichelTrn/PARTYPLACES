@@ -1,11 +1,11 @@
 
-<div class="container mt-5 border">
-  <h1 class="text-center mt-5 ">Add your place</h1>
+<div class="container mt-5 border rounded-5 p-5">
+  <h1>Add your place</h1>
   <%= simple_form_for (@place) do |f| %>
     <%= f.input :name %>
     <%= f.input :address %>
     <%= f.input :price %>
     <%= f.input :photo, as: :file%>
-    <%= f.button :submit, class: "btn btn-outline-primary"  %>
+    <%= f.button :submit, class: "btn btn-small-white"  %>
   <% end %>
 </div>

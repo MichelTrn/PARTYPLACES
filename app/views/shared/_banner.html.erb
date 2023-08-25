@@ -19,12 +19,16 @@
     <h1>Find your <strong>atypical party place</strong> !</h1>
     <div class="p-4">
       <%if user_signed_in? %>
-        <%= link_to "Book a place", places_path, class: "btn btn-white" %>
-        <%= link_to "Rent your place", new_place_path, class: "btn btn-white" %>
-        <%= link_to "See my place(s)", myplaces_path, class: "btn btn-white" %>
+        <div class="banner-btn">
+          <%= link_to "Book a place", places_path, class: "btn btn-white" %>
+          <%= link_to "Rent your place", new_place_path, class: "btn btn-white" %>
+          <%= link_to "See my place(s)", myplaces_path, class: "btn btn-white" %>
+        </div>
       <% else %>
-        <%= link_to "All places", places_path, class: "btn btn-white" %>
-        <%= link_to "Login", new_user_session_path, class: "btn btn-white" %>
+        <div class="banner-btn">
+          <%= link_to "All places", places_path, class: "btn btn-white" %>
+          <%= link_to "Login", new_user_session_path, class: "btn btn-white" %>
+        </div>
       <% end %>
     </div>
   </div>
