@@ -111,3 +111,13 @@
           </div>
   </div>
 <% end %>
+
+<% if user_signed_in? == false %>
+      <div class="container d-flex mt-3 justify-content-center">
+        <div class="row border p-2 bg-light rounded just">
+          <h3 class="text-center">You want to party 🥳?</h3>
+           <%= link_to "Login", new_user_session_path, class: "btn btn-small-white mb-2" %>
+           <%= link_to "Sign-up", new_user_registration_path, class: "btn btn-small-white mb-2" %>
+        </div>
+      </div>
+<% end %>
