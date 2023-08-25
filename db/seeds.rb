@@ -16,9 +16,16 @@ User.destroy_all
 
 # Seed pour Nathaly
 
-puts 'Creating 1 user(Nathaly)'
+puts 'Creating 1 user(Pierre La Rente)'
 
 user1 = User.create!(
+  first_name: "Pierre",
+  last_name: "La Rente",
+  birth_date: "1950-06-23",
+  email: "Pierre-larente@gmail.com",
+  password: "123456"
+)
+user2 = User.create!(
   first_name: "Nathaly",
   last_name: "Gomez",
   birth_date: "1995-06-23",
@@ -26,15 +33,8 @@ user1 = User.create!(
   password: "123456"
 )
 
-user2 = User.create!(
-  first_name: "Pierre",
-  last_name: "La Rente",
-  birth_date: "1950-06-23",
-  email: "Pierre-la-rente@gmail.com",
-  password: "123456"
-)
 
-puts 'Creating 3 places and 6 bookings per place for Nathaly via unplash'
+puts 'Creating 2 places and 6 bookings per place for Pierre via unplash'
 puts 'First creation'
 
   # Build the URL for your query to unsplash
@@ -54,8 +54,8 @@ place1 = user1.places.new(name: Faker::Restaurant.name, address: "3 Boulevard de
 place1.photo.attach(io: file, filename: "bar.png", content_type: "image/png")
 place1.save!
 
-puts 'Creating 3 bookings for places Nathaly via unplash'
-3.times do
+puts 'Creating 6 bookings for places of Pierre via unplash'
+6.times do
   booking = Booking.new(
     status: ["pending confirmation", "booked", "refused"].sample,
     begin_date: Faker::Date.between(from: '2022-09-23', to: '2023-01-13'),
@@ -85,7 +85,7 @@ place1 = user1.places.new(name: Faker::Restaurant.name, address: " 4 Impasse Mor
 place1.photo.attach(io: file, filename: "bar.png", content_type: "image/png")
 place1.save!
 
-puts 'Creating 6 bookings for places Nathaly via unplash'
+puts 'Creating 6 bookings for places of Pierre via unplash'
 6.times do
   booking = Booking.new(
     status: ["pending confirmation", "booked", "refused"].sample,
@@ -97,7 +97,7 @@ puts 'Creating 6 bookings for places Nathaly via unplash'
   booking.save!
 end
 
-
+puts 'Creating 1 places and 6 bookings per place for Nathaly via unplash'
 puts '3rd creation'
 
   # Build the URL for your query to unsplash
@@ -112,10 +112,10 @@ photo_url = photo_json["urls"]["small"]
 
 # Download this photo and save it into a variable
 file = URI.open(photo_url)
-place1 = user1.places.new(name: Faker::Restaurant.name, address: " 13 rue Pierre Fontaine, Paris", price: rand(400..1000))
+place2 = user2.places.new(name: "Les Marquises", address: " 145 rue Oberkampf, Paris", price: rand(400..1000))
 # Attach the photo using your Cloudinary config
-place1.photo.attach(io: file, filename: "bar.png", content_type: "image/png")
-place1.save!
+place2.photo.attach(io: file, filename: "bar.png", content_type: "image/png")
+place2.save!
 
 6.times do
   booking = Booking.new(
@@ -123,8 +123,8 @@ place1.save!
     begin_date: Faker::Date.between(from: '2022-09-23', to: '2023-01-13'),
     end_date: Faker::Date.between(from: '2023-01-14', to: Date.today)
   )
-  booking.user = user1
-  booking.place = place1
+  booking.user = user2
+  booking.place = place2
   booking.save!
 end
 
