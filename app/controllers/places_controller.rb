@@ -23,6 +23,9 @@ class PlacesController < ApplicationController
 
   def myplaces
     @myplaces = current_user.places
+    if params[:query].present?
+      @myplaces = current_user.places.search_by_name_and_address(params[:query])
+    end
   end
 
   def create
@@ -30,7 +33,7 @@ class PlacesController < ApplicationController
     @user = User.find(current_user.id)
     @place.user = @user
     if @place.save
-      redirect_to places_path
+      redirect_to myplaces_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -43,7 +46,7 @@ class PlacesController < ApplicationController
   def update
     @place = Place.find(params[:id])
     if @place.update(place_params)
-      redirect_to place_path(@place)
+      redirect_to myplaces_path
     else
       render :edit, status: :unprocessable_entity
     end
@@ -67,7 +70,7 @@ class PlacesController < ApplicationController
   def destroy
     @place = Place.find(params[:id])
     @place.destroy
-    redirect_to places_path, status: :see_other
+    redirect_to myplaces_path, status: :see_other
   end
 
   private
