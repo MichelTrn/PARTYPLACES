@@ -1,6 +1,6 @@
 
 <div class="container mt-5">
-  <p><strong>Places detail</strong></p>
+  <h2><strong>Places detail</strong></h2>
 
   <div class="row">
     <div class="col">
@@ -13,16 +13,18 @@
           <%else%>
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png"/>
           <%end%>
-            <div class="card-product-infos">
-              <h2><%= @place.name %> </h2>
-              <p><%= @place.address%> </p>
-              <p><%= @place.price %> € </p>
-              <br>
-                <% if user_signed_in? && current_user.id == @place.user_id %>
-                  <div class="edit-delete">
-                    <button class="btn btn-outline-info rounded-pill"><i class="fa fa-trash"> <%= link_to " Delete this place ", place_path,  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></i></button>
-                    <button class="btn btn-outline-info rounded-pill"><i class="fa fa-edit"> <%= link_to " Edit this place ", edit_place_path %></i></button>
-                  </div>
+
+          <div class="card-product-infos">
+            <h3><%= @place.name %> </h3>
+            <p><%= @place.address%> </p>
+            <p><%= @place.price %> € </p>
+
+            <br>
+             <% if user_signed_in? && current_user.id == @place.user_id %>
+              <div class="edit-delete">
+                <button class="btn btn-outline-info rounded-pill"><i class="fa fa-trash"> <%= link_to " Delete this place ", place_path,  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></i></button>
+                <button class="btn btn-outline-info rounded-pill"><i class="fa fa-edit"> <%= link_to " Edit this place ", edit_place_path %></i></button>
+              </div>
 
                 <% end %>
             </div>
@@ -41,7 +43,7 @@
 
 <% if user_signed_in? && @bookings.count > 0 && current_user.id == @place.user_id%>
   <div class="container mt-5 border">
-    <p><strong>My Bookings details</strong></p>
+    <h2 class="mt-2"><strong>My Bookings details</strong></h2>
         <div class="card-bookings p-3 mt-3 row">
           <% @bookings.each do |booking| %>
             <div class="card-product-infos col-4">
@@ -105,6 +107,16 @@
             <% end %>
           </div>
   </div>
+<% end %>
+
+<% if user_signed_in? == false %>
+      <div class="container d-flex mt-3 justify-content-center">
+        <div class="row border p-2 bg-light rounded just">
+          <h3 class="text-center">You want to party 🥳?</h3>
+           <%= link_to "Login", new_user_session_path, class: "btn btn-small-white mb-2" %>
+           <%= link_to "Sign-up", new_user_registration_path, class: "btn btn-small-white mb-2" %>
+        </div>
+      </div>
 <% end %>
 
 <% if user_signed_in? && current_user.id != @place.user_id %>
