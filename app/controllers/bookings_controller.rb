@@ -7,11 +7,12 @@ class BookingsController < ApplicationController
     @places_user.each do |place|
       # place.name
       @my_bookings_owner << place.bookings
-    end
 
+    end
     # @my_bookings_owner.sort_by! {|booking| place.booking.begin_date}
     @my_bookings_locataire = Booking.all.select {|booking| booking.user_id == current_user.id }
     @my_bookings_locataire.sort_by! {|booking| booking.begin_date}
+
   end
 
   def new
