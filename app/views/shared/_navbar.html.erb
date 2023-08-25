@@ -25,18 +25,19 @@
                 <span class = "p-2"><%= current_user.first_name.capitalize %></span>
                 <%= image_tag "avatar.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                  <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
-                </div>
-                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                   <%= link_to "My bookings", bookings_path, class: "dropdown-item" %>
+                  <%= link_to "My places", myplaces_path, class: "dropdown-item" %>
+                  <%= link_to "Log out", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
                 </div>
               </div>
             </li>
           </div>
         <% else %>
           <li class="nav-item d-inline-flex">
-            <%= link_to "Sign-up", new_user_registration_path, class: "nav-link btn btn-light" %>
-            <%= link_to "Login", new_user_session_path, class: "nav-link btn btn-light" %>
+            <div class="me-3">
+              <%= link_to "Sign-up", new_user_registration_path, class: "btn btn-small-white" %>
+              <%= link_to "Login", new_user_session_path, class: "btn btn-small-white" %>
+            </div>
           </li>
         <% end %>
       </ul>
