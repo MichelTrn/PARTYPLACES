@@ -3,20 +3,31 @@ class BookingsController < ApplicationController
 
   def index
     @places_user = Place.where(user_id: current_user)
+    @my_bookings_owner = []
     @places_user.each do |place|
-      @my_bookings_owner = Booking.all.select { |booking| booking.place_id == place.id }
-      # @my_bookings_owner.each do |booking|
-      #   booking.update(booking_params)
-      #    raise
-      #   redirect_to bookings_path
-      # end
+      @my_bookings_owner << place.bookings
     end
-
+    # @my_bookings_owner.sort_by! {|booking| place.booking.begin_date}
     @my_bookings_locataire = Booking.all.select {|booking| booking.user_id == current_user.id }
+    @my_bookings_locataire.sort_by! {|booking| booking.begin_date}
   end
 
   def new
     @booking = Booking.new
+  end
+
+  def accepted
+    @booking = Booking.find(params[:id])
+    @booking.status = 'booked'
+    @booking.save
+    redirect_to bookings_path
+  end
+
+  def refused
+    @booking = Booking.find(params[:id])
+    @booking.status = 'refused'
+    @booking.save
+    redirect_to bookings_path
   end
 
   def create
@@ -30,9 +41,8 @@ class BookingsController < ApplicationController
 
   def update
     @booking = Booking.find(params[:id])
-    if @booking.update(booking_params)
-      redirect_to place_path(@booking.place_id)
-    end
+    @booking.update(booking_params)
+    redirect_to place_path(@booking.place_id)
   end
 
   private
