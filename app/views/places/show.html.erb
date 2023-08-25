@@ -45,10 +45,10 @@
     <p><strong>Bookings detail</strong></p>
       <div class="row">
         <div class="col">
-          <div class="card p-3 mt-3">
+          <div class="card-bookings p-3 mt-3">
             <% @bookings.each do |booking| %>
-              <div class="card-product-infos d-flex justify-content-center space-evenly">
-                <div class="booking border p-2 bg-light">
+              <div class="card-product-infos ">
+                <div class="booking p-2 bg-light">
 
                     <% if booking.status == 'refused' %>
                       <p class = 'btn btn-danger me-3 mt-2'><strong>Status : </strong><%= booking.status %></p>
@@ -89,9 +89,10 @@
 
 <% if user_signed_in? && @bookings.count > 0 && current_user.id != @place.user_id%>
   <div class="container mt-5 border">
-    <p><strong>Bookings detail</strong></p>
+    <p><strong>Bookings details</strong></p>
       <div class="row">
         <div class="col">
+        <span class = "btn btn-primary" id ="button-book-in-show-places"><%= link_to "Book this place", new_place_booking_path(@place) %></span>
           <div class="card p-3 mt-3">
             <% @bookings.each do |booking| %>
               <div class="card-product-infos d-flex justify-content-center space-evenly">
@@ -116,5 +117,4 @@
 <% end %>
 
 <% if user_signed_in? && current_user.id != @place.user_id %>
-  <%= link_to "Book this place", new_place_booking_path(@place) %>
 <% end %>

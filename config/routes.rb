@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       patch '/refused', to: "bookings#refused"
     end
   end
+
   get "/myplaces", to: "places#myplaces", as: "myplaces"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Defines the root path route ("/")
