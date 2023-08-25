@@ -42,77 +42,69 @@
 
 <% if user_signed_in? && @bookings.count > 0 && current_user.id == @place.user_id%>
   <div class="container mt-5 border">
-    <p><strong>Bookings detail</strong></p>
-      <div class="row">
-        <div class="col">
-          <div class="card-bookings p-3 mt-3">
-            <% @bookings.each do |booking| %>
-              <div class="card-product-infos ">
-                <div class="booking p-2 bg-light">
+    <p><strong>My Bookings details</strong></p>
+        <div class="card-bookings p-3 mt-3 row">
+          <% @bookings.each do |booking| %>
+            <div class="card-product-infos col-4">
 
-                    <% if booking.status == 'refused' %>
-                      <p class = 'btn btn-danger me-3 mt-2'><strong>Status : </strong><%= booking.status %></p>
-                      <% elsif booking.status =='pending confirmation'  %>
-                      <p class = 'btn btn-warning me-3 mt-2'><strong>Status : </strong><%= booking.status %></p>
-                      <% elsif booking.status =='booked'  %>
-                      <p class = 'btn btn-success me-3 text-center mt-2'><strong>Status : </strong><%= booking.status %></p>
-                    <% end %>
+              <div class="booking p-2 bg-light">
 
-                  <div>
-                      <p class = 'me-3 mt-3'><strong> Beginning of the reservation :</strong> <%= booking.begin_date %></p>
-                      <p class = 'me-3 mt-3'><strong>End of the reservation :</strong> <%= booking.end_date %></p>
-                  </div>
-                  <% if booking.status == 'pending confirmation' %>
-                    <div class="buttons d-flex">
-                      <div class="button m-0 h-25 me-2">
-                        <%= simple_form_for booking do |f|%>
-                          <%= f.input :status, as: :hidden, input_html: { value: 'booked'} %>
-                          <%= f.submit 'Accept', class: 'btn btn-outline-success rounded-pill' %>
-                        <% end %>
-                      </div>
-                      <div class="button me-2">
-                        <%= simple_form_for booking do |f| %>
-                          <%= f.input :status, as: :hidden, input_html: { value: 'refused'}, class: 'p-0'%>
-                          <%= f.submit 'Reject', class: 'btn btn-outline-danger rounded-pill' %>
-                        <% end %>
-                      </div>
-                    </div>
+                  <% if booking.status == 'refused' %>
+                    <p class = 'btn btn-danger rounded me-3 mt-2'><strong>Status : </strong><%= booking.status %></p>
+                    <% elsif booking.status =='pending confirmation'  %>
+                    <p class = 'btn btn-warning rounded me-3 mt-2'><strong>Status : </strong><%= booking.status %></p>
+                    <% elsif booking.status =='booked'  %>
+                    <p class = 'btn btn-success rounded me-3 text-center mt-2'><strong>Status : </strong><%= booking.status %></p>
                   <% end %>
+
+                <div>
+                    <p class = 'me-3 mt-3'><strong> Beginning of the reservation :</strong> <%= booking.begin_date %></p>
+                    <p class = 'me-3 mt-3'><strong>End of the reservation :</strong> <%= booking.end_date %></p>
                 </div>
+                <% if booking.status == 'pending confirmation' %>
+                  <div class="buttons d-flex">
+                    <div class="button m-0 h-25 me-2">
+                      <%= simple_form_for booking do |f|%>
+                        <%= f.input :status, as: :hidden, input_html: { value: 'booked'} %>
+                        <%= f.submit 'Accept', class: 'btn btn-outline-success rounded-pill' %>
+                      <% end %>
+                    </div>
+                    <div class="button me-2">
+                      <%= simple_form_for booking do |f| %>
+                        <%= f.input :status, as: :hidden, input_html: { value: 'refused'}, class: 'p-0'%>
+                        <%= f.submit 'Reject', class: 'btn btn-outline-danger rounded-pill' %>
+                      <% end %>
+                    </div>
+                  </div>
+                <% end %>
+
               </div>
-            <% end %>
-          </div>
+            </div>
+          <% end %>
         </div>
-      </div>
   </div>
 <% end %>
 
 <% if user_signed_in? && @bookings.count > 0 && current_user.id != @place.user_id%>
   <div class="container mt-5 border">
     <p><strong>Bookings details</strong></p>
-      <div class="row">
-        <div class="col">
-        <span class = "btn btn-primary" id ="button-book-in-show-places"><%= link_to "Book this place", new_place_booking_path(@place) %></span>
-          <div class="card p-3 mt-3">
+          <div class="card-bookings p-3 mt-3 row">
             <% @bookings.each do |booking| %>
-              <div class="card-product-infos d-flex justify-content-center space-evenly">
-                <div class="booking border p-2 bg-light">
-                  <% if booking.status == 'pending confirmation' %>
-                  <div>
-                      <p class = 'me-3 mt-3'><strong> Beginning of the reservation :</strong> <%= booking.begin_date %></p>
-                      <p class = 'me-3 mt-3'><strong>End of the reservation :</strong> <%= booking.end_date %></p>
-                  </div>
+              <div class="card-product-infos col-4">
+                  <div class="booking border p-2 bg-light">
                     <div class="buttons d-flex">
                       <div class="button m-0 h-25 me-2">
                         <p class = 'btn btn-warning me-3 mt-2'><strong>Status : </strong><%= booking.status %></p>
+                          <div>
+                            <p class = 'me-3 mt-3'><strong> Beginning of the reservation :</strong> <%= booking.begin_date %></p>
+                            <p class = 'me-3 mt-3'><strong>End of the reservation :</strong> <%= booking.end_date %></p>
+                          </div>
+                      </div>
                     </div>
-                  <% end %>
-                </div>
+                  </div>
               </div>
             <% end %>
           </div>
-        </div>
-      </div>
   </div>
 <% end %>
 
