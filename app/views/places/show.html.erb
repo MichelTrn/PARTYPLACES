@@ -1,6 +1,6 @@
 
 <div class="container mt-5">
-  <p><strong>Places detail</strong></p>
+  <h2><strong>Places detail</strong></h2>
 
   <div class="row">
     <div class="col">
@@ -14,7 +14,7 @@
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png"/>
           <%end%>
           <div class="card-product-infos">
-            <h2><%= @place.name %> </h2>
+            <h3><%= @place.name %> </h3>
             <p><%= @place.address%> </p>
             <p><%= @place.price %> € </p>
 
@@ -42,7 +42,7 @@
 
 <% if user_signed_in? && @bookings.count > 0 && current_user.id == @place.user_id%>
   <div class="container mt-5 border">
-    <p><strong>My Bookings details</strong></p>
+    <h2 class="mt-2"><strong>My Bookings details</strong></h2>
         <div class="card-bookings p-3 mt-3 row">
           <% @bookings.each do |booking| %>
             <div class="card-product-infos col-4">

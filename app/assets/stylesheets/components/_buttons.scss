@@ -1,40 +1,39 @@
-$dark-blue: #1D063A;
-
+// $dark-blue: #1D063A;
 a {
-  color: teal;
+  color:$forth-color;
   text-decoration: none;
   &:hover {
-    color: black;
+    color: $second-color;
   }
 }
 
 .btn-white {
-  color: $dark-blue;
+  color: $main-color;
   padding: 16px 36px;
   border-radius: 4px;
   font-weight: bold;
   background: white;
   transition: background 0.3s ease;
-  border: 1px solid $dark-blue;
+  border: 1px solid $main-color;
 }
 
 .btn-white:hover {
-  background: $dark-blue;
+  background: $main-color;
   color: white;
 }
 
 .btn-small-white {
-  color: $dark-blue;
+  color: $main-color;
   padding: 8px 24px;
   border-radius: 4px;
   font-weight: bold;
   background: white;
   transition: background 0.3s ease;
-  border: 1px solid $dark-blue;
+  border: 1px solid $main-color;
 }
 
 .btn-small-white:hover {
-  background: $dark-blue;
+  background: $main-color;
   color: white;
 }
 

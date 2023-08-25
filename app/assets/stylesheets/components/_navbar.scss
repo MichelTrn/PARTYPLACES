@@ -1,4 +1,4 @@
-$dark-blue:#1D063A;
+// $dark-blue:#1D063A;
 
 .navbar-lewagon {
   justify-content: space-between;
@@ -14,7 +14,7 @@ $dark-blue:#1D063A;
 }
 
 .navbar-lewagon h1{
-  color :$dark-blue;
+  color :$main-color;
   font-size: 40px;
   font-weight: bold;
   margin: 0;
