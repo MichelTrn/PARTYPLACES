@@ -13,6 +13,7 @@
           <%else%>
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png"/>
           <%end%>
+
           <div class="card-product-infos">
             <h3><%= @place.name %> </h3>
             <p><%= @place.address%> </p>
@@ -25,14 +26,14 @@
                 <button class="btn btn-outline-info rounded-pill"><i class="fa fa-edit"> <%= link_to " Edit this place ", edit_place_path %></i></button>
               </div>
 
-            <% end %>
-          </div>
-            <div style="width: 420px; height: 400px;"
-              data-controller="map"
-              data-map-markers-value="<%= @markers.to_json %>"
-              data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-               <%= render 'shared/marker' %>
+                <% end %>
             </div>
+              <div style="width: 420px; height: 400px;"
+                data-controller="map"
+                data-map-markers-value="<%= @markers.to_json %>"
+                data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+                <%= render 'shared/marker' %>
+              </div>
         </div>
       </div>
     </div>
