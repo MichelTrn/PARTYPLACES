@@ -1,13 +1,1 @@
 <%= render 'shared/banner' %>
-
-<% if user_signed_in? %>
-    <div class="container">
-      <%= render 'shared/indexPlaceUser' %>
-      <%= render 'shared/indexPlaceOtherUser' %>
-    </div>
-  <% else %>
-    <div class="container">
-      <%= render 'shared/searchbar' %>
-      <%= render 'shared/indexPlaceAll' %>
-    </div>
-  <% end %>

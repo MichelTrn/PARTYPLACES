@@ -5,8 +5,8 @@ class PlacesController < ApplicationController
   end
 
   def index
-    @places_user = Place.where(user_id: current_user)
-    @places_otheruser = Place.where.not(user_id: current_user)
+    @place = Place.new
+    @places_otheruser = Place.where.not(user: current_user)
     @places = Place.all
 
     if params[:query].present?
@@ -16,9 +16,13 @@ class PlacesController < ApplicationController
     end
 
     if user_signed_in? && params[:query].present?
-      @places_user = @places_user.search_by_name_and_address(params[:query])
+      @places_user = current_user.places.search_by_name_and_address(params[:query])
       @places_otheruser = @places_otheruser.search_by_name_and_address(params[:query])
     end
+  end
+
+  def myplaces
+    @myplaces = current_user.places
   end
 
   def create
