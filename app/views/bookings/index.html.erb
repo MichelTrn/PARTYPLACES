@@ -4,7 +4,6 @@
       <div class="container d-flex">
         <div class="row">
         <% @my_bookings_owner.each do |place|  %>
-
           <% place.each do |booking| %>
               <div class="booking border p-2 bg-light rounded">
               <h3 class ="text-center m-3"><%= Place.find(booking.place.id).name %></h3>
@@ -43,12 +42,11 @@
   <% end %>
 <% end %>
 
-
-<% if user_signed_in? && @my_bookings_locataire.count > 0 %>
+<% if user_signed_in? %>
 <h1 class ="text-center m-3 mt-5">My futures parties🥳</h1>
   <div class="container d-flex">
       <div class="row">
-        <% @my_bookings_locataire.each do |booking| %>
+        <% current_user.bookings.each do |booking| %>
             <div class="booking border p-2 bg-light rounded">
               <h3 class ="text-center m-3"><%= booking.place.name %></h3>
                 <% if booking.status == 'refused' %>

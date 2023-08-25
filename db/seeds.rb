@@ -32,7 +32,65 @@ user2 = User.create!(
   email: "nath@gmail.com",
   password: "123456"
 )
+  places =[]
 
+puts '3 creating places randomly and 1 random user'
+
+user3 = User.create!(
+  first_name: "Jean",
+  last_name: "Bon",
+  birth_date: "1990-06-23",
+  email: "Jeanbon@gmail.com",
+  password: "123456"
+)
+
+puts 'creating 1st random place'
+
+url = "https://api.unsplash.com/photos/random?client_id=#{ENV["ACCESS_KEY"]}&query=bar"
+# Fetch this URL, it will return a json containing infos about 1 random photo
+photo_serialized = URI.open(url).read
+photo_json = JSON.parse(photo_serialized)
+# Get the URL for one of the sizes (small is the smallest obvy)
+photo_url = photo_json["urls"]["small"]
+# Download this photo and save it into a variable
+file = URI.open(photo_url)
+place = user3.places.new(name: Faker::Restaurant.name, address: "25 rue de Charenton, Paris", price: rand(400..1000))
+# Attach the photo using your Cloudinary config
+place.photo.attach(io: file, filename: "bar.png", content_type: "image/png")
+place.save!
+places << place
+
+puts 'creating 2nd random place'
+url = "https://api.unsplash.com/photos/random?client_id=#{ENV["ACCESS_KEY"]}&query=bar"
+# Fetch this URL, it will return a json containing infos about 1 random photo
+photo_serialized = URI.open(url).read
+photo_json = JSON.parse(photo_serialized)
+# Get the URL for one of the sizes (small is the smallest obvy)
+photo_url = photo_json["urls"]["small"]
+# Download this photo and save it into a variable
+file = URI.open(photo_url)
+place = user3.places.new(name: Faker::Restaurant.name, address: "11 rue Saint Maur, Paris", price: rand(400..1000))
+# Attach the photo using your Cloudinary config
+place.photo.attach(io: file, filename: "bar.png", content_type: "image/png")
+place.save!
+places << place
+
+puts 'creating 3rd random place'
+url = "https://api.unsplash.com/photos/random?client_id=#{ENV["ACCESS_KEY"]}&query=bar"
+# Fetch this URL, it will return a json containing infos about 1 random photo
+photo_serialized = URI.open(url).read
+photo_json = JSON.parse(photo_serialized)
+# Get the URL for one of the sizes (small is the smallest obvy)
+photo_url = photo_json["urls"]["small"]
+# Download this photo and save it into a variable
+file = URI.open(photo_url)
+place = user3.places.new(name: Faker::Restaurant.name, address: "188 Rue de Grenelle, Paris", price: rand(400..1000))
+# Attach the photo using your Cloudinary config
+place.photo.attach(io: file, filename: "bar.png", content_type: "image/png")
+place.save!
+places << place
+
+# puts places
 
 puts 'Creating 2 places and 6 bookings per place for Pierre via unplash'
 puts 'First creation'
@@ -62,7 +120,7 @@ puts 'Creating 6 bookings for places of Pierre via unplash'
     end_date: Faker::Date.between(from: '2023-01-14', to: Date.today)
   )
   booking.user = user1
-  booking.place = place1
+  booking.place = Place.where.not(user: user1).sample
   booking.save!
 end
 
@@ -92,8 +150,8 @@ puts 'Creating 6 bookings for places of Pierre via unplash'
     begin_date: Faker::Date.between(from: '2022-09-23', to: '2023-01-13'),
     end_date: Faker::Date.between(from: '2023-01-14', to: Date.today)
   )
-  booking.user = user1
-  booking.place = place1
+  booking.user = user3
+  booking.place = places.sample
   booking.save!
 end
 
@@ -124,7 +182,7 @@ place2.save!
     end_date: Faker::Date.between(from: '2023-01-14', to: Date.today)
   )
   booking.user = user2
-  booking.place = place2
+  booking.place = places.sample
   booking.save!
 end
 
