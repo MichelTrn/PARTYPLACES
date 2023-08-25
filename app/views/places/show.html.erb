@@ -45,10 +45,10 @@
     <p><strong>Bookings detail</strong></p>
       <div class="row">
         <div class="col">
-          <div class="card p-3 mt-3">
+          <div class="card-bookings p-3 mt-3">
             <% @bookings.each do |booking| %>
-              <div class="card-product-infos d-flex justify-content-center space-evenly">
-                <div class="booking border p-2 bg-light">
+              <div class="card-product-infos ">
+                <div class="booking p-2 bg-light">
 
                     <% if booking.status == 'refused' %>
                       <p class = 'btn btn-danger me-3 mt-2'><strong>Status : </strong><%= booking.status %></p>
