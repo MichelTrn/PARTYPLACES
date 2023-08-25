@@ -17,7 +17,11 @@
           <div class="card-product-infos">
             <h3><%= @place.name %> </h3>
             <p><%= @place.address%> </p>
-            <p><%= @place.price %> € </p>
+            <p class ="mb-3"><%= @place.price %> € </p>
+
+            <% if user_signed_in? && current_user.id != @place.user_id %>
+              <%= link_to "Book this place", new_place_booking_path(@place), class: "btn-small-white" %>
+            <% end %>
 
             <br>
              <% if user_signed_in? && current_user.id == @place.user_id %>
@@ -117,8 +121,4 @@
            <%= link_to "Sign-up", new_user_registration_path, class: "btn btn-small-white mb-2" %>
         </div>
       </div>
-<% end %>
-
-<% if user_signed_in? && current_user.id != @place.user_id %>
-  <%= link_to "Book this place", new_place_booking_path(@place) %>
 <% end %>
