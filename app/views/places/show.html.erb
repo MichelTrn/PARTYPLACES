@@ -16,11 +16,7 @@
           <div class="card-product-infos">
             <h2><%= @place.name %> </h2>
             <p><%= @place.address%> </p>
-            <p class="mb-5"><%= @place.price %> € </p>
-
-            <% if user_signed_in? && current_user.id != @place.user_id %>
-              <%= link_to "Book this place", new_place_booking_path(@place), class: "btn-small-white" %>
-            <% end %>
+            <p><%= @place.price %> € </p>
 
             <br>
              <% if user_signed_in? && current_user.id == @place.user_id %>
@@ -89,11 +85,11 @@
   </div>
 <% end %>
 
-<% if user_signed_in? && @bookings.count > 0 && current_user.id != @place.user_id%>
+<% if user_signed_in? && @my_bookings.count > 0 && current_user.id != @place.user_id%>
   <div class="container mt-5 border">
-    <p><strong>Bookings details</strong></p>
+    <p><strong>My Bookings details</strong></p>
           <div class="card-bookings p-3 mt-3 row">
-            <% @bookings.each do |booking| %>
+            <% @my_bookings.each do |booking| %>
               <div class="card-product-infos col-4">
                   <div class="booking border p-2 bg-light">
                     <div class="buttons d-flex">
@@ -110,4 +106,18 @@
             <% end %>
           </div>
   </div>
+<% end %>
+
+<% if user_signed_in? == false %>
+      <div class="container d-flex mt-3 justify-content-center">
+        <div class="row border p-2 bg-light rounded just">
+          <h3 class="text-center">You want to party 🥳?</h3>
+           <%= link_to "Login", new_user_session_path, class: "btn btn-small-white mb-2" %>
+           <%= link_to "Sign-up", new_user_registration_path, class: "btn btn-small-white mb-2" %>
+        </div>
+      </div>
+<% end %>
+
+<% if user_signed_in? && current_user.id != @place.user_id %>
+  <%= link_to "Book this place", new_place_booking_path(@place) %>
 <% end %>

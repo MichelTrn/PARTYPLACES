@@ -54,8 +54,9 @@ class PlacesController < ApplicationController
 
   def show
     @place = Place.find(params[:id])
-    @bookings = Booking.all.select {|booking| booking.place == @place }
-    @bookings.sort_by! {|booking| booking.begin_date}
+    @bookings = @place.bookings
+    @my_bookings = @bookings.where(user: current_user)
+    @bookings.to_a.sort_by! {|booking| booking.begin_date}
     if @place.geocoded?
       @markers = [
         {
