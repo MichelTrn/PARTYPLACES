@@ -2,11 +2,11 @@
   <% if user_signed_in? && @my_bookings_owner.count > 0 %>
     <h1 class ="text-center m-3">My bookings🤑</h1>
       <div class="container d-flex">
-        <div class="row">
+        <div class="row justify-content-center">
         <% @my_bookings_owner.each do |place|  %>
 
           <% place.each do |booking| %>
-              <div class="booking border p-2 bg-light rounded">
+              <div class="booking border p-3 bg-light rounded m-2">
               <h3 class ="text-center m-3"><%= Place.find(booking.place.id).name %></h3>
                   <% if booking.status == 'refused' %>
                     <p class = 'btn btn-danger me-3 mt-2'><strong>Status : </strong><%= booking.status  %></p>
@@ -15,7 +15,7 @@
                   <% elsif booking.status  =='booked'  %>
                     <p class = 'btn btn-success me-3 text-center mt-2'><strong>Status : </strong><%= booking.status %></p>
                   <% end %>
-                  <p class = 'me-3 mt-3'><strong> Booker par :</strong> <%= User.find(booking.user.id).first_name  %> <%= User.find(booking.user.id).last_name  %></p>
+                  <p class = 'me-3 mt-3'><strong> Booked by :</strong> <%= User.find(booking.user.id).first_name  %> <%= User.find(booking.user.id).last_name  %></p>
                   <p class = 'me-3 mt-3'><strong> Beginning of the reservation :</strong> <%= booking.begin_date %></p>
                   <p class = 'me-3 mt-3'><strong>End of the reservation :</strong> <%= booking.end_date %></p>
                   <% if booking.status  == 'pending confirmation' %>
@@ -36,7 +36,7 @@
   <% elsif user_signed_in? && @my_bookings_owner.count == 0%>
     <h1 class ="text-center m-3">My bookings🤑</h1>
       <div class="container d-flex">
-        <div class="row border p-2 bg-light rounded">
+        <div class="row border p-3 bg-light rounded">
           <h3>Pas de réservations... pour l'instant !</h3>
         </div>
       </div>
@@ -45,11 +45,11 @@
 
 
 <% if user_signed_in? && @my_bookings_locataire.count > 0 %>
-<h1 class ="text-center m-3 mt-5">My futures parties🥳</h1>
-  <div class="container d-flex">
-      <div class="row">
+<h1 class ="text-center m-3 mt-5">My futures partys🥳</h1>
+  <div class="container d-flex ">
+      <div class="row p-3 justify-content-center ">
         <% @my_bookings_locataire.each do |booking| %>
-            <div class="booking border p-2 bg-light rounded">
+            <div class="booking border p-3 bg-light rounded m-3">
               <h3 class ="text-center m-3"><%= booking.place.name %></h3>
                 <% if booking.status == 'refused' %>
                   <p class = 'btn btn-danger me-3 mt-2'><strong>Status : </strong><%= booking.status %></p>
@@ -65,9 +65,9 @@
         </div>
       </div>
 <% elsif user_signed_in? && @my_bookings_locataire.count == 0%>
-      <h1 class ="text-center m-3">My futures parties🥳</h1>
+      <h1 class ="text-center m-3">My futures partys🥳</h1>
         <div class="container d-flex">
-          <div class="row border p-2 bg-light rounded">
+          <div class="row border p-3 bg-light rounded m-3 justify-content-center">
             <h3>Pas d'apéro réservé... pour l'instant !</h3>
             <p>Il est temps de ressortir vos meilleurs déguisements et de préparer votre prochaine soirée</p>
           </div>
