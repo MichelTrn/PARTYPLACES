@@ -54,8 +54,8 @@ place1 = user1.places.new(name: Faker::Restaurant.name, address: "3 Boulevard de
 place1.photo.attach(io: file, filename: "bar.png", content_type: "image/png")
 place1.save!
 
-puts 'Creating 6 bookings for places Nathaly via unplash'
-6.times do
+puts 'Creating 3 bookings for places Nathaly via unplash'
+3.times do
   booking = Booking.new(
     status: ["pending confirmation", "booked", "refused"].sample,
     begin_date: Faker::Date.between(from: '2022-09-23', to: '2023-01-13'),
